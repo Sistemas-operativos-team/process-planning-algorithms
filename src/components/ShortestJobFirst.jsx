@@ -15,6 +15,11 @@ export const ShortestJobFirst = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [runningProcess, setRunningProcess] = useState(null);
 
+  // Función para recargar la página
+  const reloadPage = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     const runSJF = () => {
       if (processes.length === 0) return;
@@ -23,7 +28,7 @@ export const ShortestJobFirst = () => {
       const arrivedProcesses = processes.filter(process => process.arrivalTime <= currentTime);
 
       // Ordena los procesos por su tiempo de ráfaga (burst time)
-      arrivedProcesses.sort((a, b) => a.burstTime - b.burstTime);
+      arrivedProcesses.sort((a, b) => a.burstTime - b.burstTime); // Corregir la función de ordenamiento
 
       if (arrivedProcesses.length === 0) {
         setCurrentTime(currentTime + 1); // Avanzar el tiempo si no hay procesos listos
@@ -53,6 +58,7 @@ export const ShortestJobFirst = () => {
   return (
     <div>
       <h1>Shortest Job First (SJF) Simulation</h1>
+      <button onClick={reloadPage}>Reiniciar simulación</button>
       <div>
         <h2>Current Time: {currentTime}</h2>
         <h2>Running Process: {runningProcess ? runningProcess.name : 'None'}</h2>
