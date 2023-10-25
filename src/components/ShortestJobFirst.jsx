@@ -3,12 +3,12 @@ import { useState, useEffect } from 'react';
 export const ShortestJobFirst = () => {
   const [processes, setProcesses] = useState([
     { id: 1, name: 'Process A', arrivalTime: 0, burstTime: 4 },
-    { id: 2, name: 'Process B', arrivalTime: 2, burstTime: 2 },
-    { id: 3, name: 'Process C', arrivalTime: 4, burstTime: 1 },
-    { id: 4, name: 'Process D', arrivalTime: 5, burstTime: 3 },
-    { id: 5, name: 'Process E', arrivalTime: 6, burstTime: 2 },
-    { id: 6, name: 'Process F', arrivalTime: 7, burstTime: 1 },
-    { id: 7, name: 'Process G', arrivalTime: 8, burstTime: 5 },
+    { id: 2, name: 'Process B', arrivalTime: 0, burstTime: 2 },
+    { id: 3, name: 'Process C', arrivalTime: 0, burstTime: 1 },
+    { id: 4, name: 'Process D', arrivalTime: 0, burstTime: 3 },
+    { id: 5, name: 'Process E', arrivalTime: 0, burstTime: 2 },
+    { id: 6, name: 'Process F', arrivalTime: 0, burstTime: 20 },
+    { id: 7, name: 'Process G', arrivalTime: 0, burstTime: 5 },
     // Agrega más procesos aquí
   ]);
 
@@ -67,7 +67,7 @@ export const ShortestJobFirst = () => {
         <h2>Process Queue:</h2>
         <ul>
           {processes.map(process => (
-            <li key={process.id}>{process.name}</li>
+            <li key={process.id}>{process.name} {process.burstTime}</li>
           ))}
         </ul>
       </div>
