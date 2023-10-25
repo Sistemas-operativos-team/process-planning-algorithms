@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const ShortestJobFirst = () => {
   const [processes, setProcesses] = useState([
@@ -6,6 +6,10 @@ export const ShortestJobFirst = () => {
     { id: 2, name: 'Process B', arrivalTime: 2, burstTime: 2 },
     { id: 3, name: 'Process C', arrivalTime: 4, burstTime: 1 },
     { id: 4, name: 'Process D', arrivalTime: 5, burstTime: 3 },
+    { id: 5, name: 'Process E', arrivalTime: 6, burstTime: 2 },
+    { id: 6, name: 'Process F', arrivalTime: 7, burstTime: 1 },
+    { id: 7, name: 'Process G', arrivalTime: 8, burstTime: 5 },
+    // Agrega más procesos aquí
   ]);
 
   const [currentTime, setCurrentTime] = useState(0);
