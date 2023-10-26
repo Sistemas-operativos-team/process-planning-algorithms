@@ -1,0 +1,19 @@
+.all {
+    height: 100vh;
+    width: 100vw;
+}
+
+.firstPart {
+    background-color: #FCB70B;
+    background-image: url("background.jpeg");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.picture {
+    height: 70vh;
+}
+
+h1 {
+    background-color: #AC36BF;
+}
