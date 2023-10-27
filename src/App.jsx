@@ -1,12 +1,15 @@
-import {ShortestJobFirst} from './components/ShortestJobFirst'
+import { ShortestJobFirst } from "./components/ShortestJobFirst";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+
 
 function App() {
-
   return (
-    <>
-      <ShortestJobFirst/>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ShortestJobFirst/>} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
