@@ -1,4 +1,4 @@
-import { ShortestJobFirst } from "./components/ShortestJobFirst";
+import { ShortestJobFirst } from "./components/ShortestJobFirst/ShortestJobFirst";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
