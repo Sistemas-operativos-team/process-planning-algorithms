@@ -1,0 +1,55 @@
+@font-face{
+    font-family: 'Wendy One';
+    src: url('WendyOne.ttf') format('truetype');
+}
+
+.color {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.allHeader {
+    display: flex;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+}
+
+.logo {
+    width: 10%;
+}
+
+.logoImage {
+    border-radius: 50%;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+}
+
+.sectionLink {
+    font-family: "Wendy One", sans-serif;
+    font-size: 2vw;
+    margin-right: auto;
+    margin-left: auto;
+    color: #AC36BF;
+}
+
+.logoImage:hover {
+    width: 110px;
+    height: 110px;
+    box-shadow: 0 0 30px #AC36BF;
+    border-radius: 50%;
+}
+
+.sectionLink:hover {
+    font-size: 3vw;
+    color: #AC36BF;
+    text-shadow: 2px 2px 10px rgba(119, 95, 156, 1);
+}
