@@ -1,4 +1,3 @@
-import { ShortestJobFirst } from "./components/ShortestJobFirst/ShortestJobFirst.jsx";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home.jsx";
 import Fifo from "./components/Fifo/Fifo.jsx";
