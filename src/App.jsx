@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { ShortestJobFirst } from "./components/ShortestJobFirst/ShortestJobFirst";
 import Home from "./components/Home/Home.jsx";
 import Fifo from "./components/Fifo/Fifo.jsx";
 import RoundRobin from "./components/RoundRobin/RoundRobin.jsx";
