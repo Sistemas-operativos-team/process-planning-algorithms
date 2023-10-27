@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import RoundRobin from "./components/RoundRobin";
+import { ShortestJobFirst } from "./components/ShortestJobFirst";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
-const App = () => {
-    const [cola, setCola] = useState([1, 2, 3, 4, 5]);
 
-    return (
-        <div>
-            <RoundRobin cola={cola} />
-        </div>
-    );
-};
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ShortestJobFirst/>} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
 export default App;
