@@ -3,6 +3,8 @@ import { ShortestJobFirst } from "./components/ShortestJobFirst/ShortestJobFirst
 import Home from "./components/Home/Home.jsx";
 import Fifo from "./components/Fifo/Fifo.jsx";
 import RoundRobin from "./components/RoundRobin/RoundRobin.jsx";
+import {RoundRobinF} from "./components/RoundRobin/RoundRobinF.jsx";
+
 
 function App() {
   return (
@@ -11,7 +13,7 @@ function App() {
         <Route path="/sjf" element={<ShortestJobFirst />} />
         <Route path={"/home"} element={<Home/>}></Route>
         <Route path={"/fifo"} element={<Fifo/>}></Route>
-        <Route path={"/roundrobin"} element={<RoundRobin/>}></Route>
+        <Route path={"/round-robin"} element={<RoundRobin/>}></Route>
         {/*<Route path={"/priority"} element={}></Route>*/}
     </Routes>
   );
