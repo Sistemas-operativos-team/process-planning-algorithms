@@ -39,7 +39,6 @@
     display: grid;
     justify-content: space-evenly;
     align-items: flex-start;
-    margin-top: 40px;
 }
 
 .List{
@@ -116,11 +115,10 @@
     }
 
     .socialContainer {
-        margin-top: 0; 
-        border-top: 2px solid #FCB70B; 
-        border-bottom: 2px solid #FCB70B; 
+        margin-top: 0;
+        border-top: 2px solid #7E3D6F;
+        border-bottom: 2px solid #7E3D6F;
         border-left: transparent;
-
     }
 
    
