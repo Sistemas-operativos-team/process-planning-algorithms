@@ -1,4 +1,5 @@
 import styles from './styles.module.css';
+import {Link, useNavigate} from "react-router-dom";
 
 function InfoAlgorithms() {
     return (
@@ -21,11 +22,8 @@ function InfoAlgorithms() {
                             eficiente de los recursos en sistemas computacionales modernos.</p>
                     </div>
                     <div className={styles.buttonContainer}>
-                        <button className={styles.algorithmButton}>FIFO</button>
-                        <button className={styles.algorithmButton}>SJF</button>
-                        <button className={styles.algorithmButton}>Round Robin</button>
+                        <div className={styles.referenceImage}></div>
                     </div>
-                    <a href={"variables.css"}></a>
                 </div>
             </div>
         </div>

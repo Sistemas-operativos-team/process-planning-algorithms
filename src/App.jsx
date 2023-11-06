@@ -4,6 +4,7 @@ import Home from "./components/Home/Home.jsx";
 import Fifo from "./components/Fifo/Fifo.jsx";
 import RoundRobin from "./components/RoundRobin/RoundRobin.jsx";
 import {RoundRobinF} from "./components/RoundRobin/RoundRobinF.jsx";
+import Priority from "./components/Priority/Priority.jsx";
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <Route path={"/home"} element={<Home/>}></Route>
         <Route path={"/fifo"} element={<Fifo/>}></Route>
         <Route path={"/round-robin"} element={<RoundRobin/>}></Route>
-        {/*<Route path={"/priority"} element={}></Route>*/}
+        <Route path={"/priority"} element={<Priority/>}></Route>
     </Routes>
   );
 }
