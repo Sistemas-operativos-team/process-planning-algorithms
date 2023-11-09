@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-
-
 const RoundRobin = () => {
     const [cantidadProcesos, setCantidadProcesos] = useState(3);
     const [tiempoEjecucion, setTiempoEjecucion] = useState([100, 200, 300]);
