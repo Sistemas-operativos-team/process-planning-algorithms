@@ -14,7 +14,7 @@ function NavBar() {
                     </div>
                     <div className={styles.right}>
                         <a href="/sjf" className={styles.sectionLink}>SJF</a>
-                        <a href="/roundrobin" className={styles.sectionLink}>Round Robin</a>
+                        <a href="/round-robin" className={styles.sectionLink}>Round Robin</a>
                     </div>
                 </div>
             </div>
