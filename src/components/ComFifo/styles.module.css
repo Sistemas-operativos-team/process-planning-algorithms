@@ -1,0 +1,137 @@
+@font-face{
+    font-family: 'Wendy One';
+    src: url('WendyOne.ttf') format('truetype');
+}
+
+.allSectionInfo {
+    height: auto;
+}
+
+.content {
+    text-align: center;
+}
+
+
+.planContent {
+    display: flex;
+    margin: 50px;
+}
+
+.sectionTitle {
+    font-family: "Wendy One", sans-serif;
+    color: white;
+    font-size: 40px;
+    width: 40%;
+    background-color: transparent;
+}
+
+.sectionDescription {
+    font-size: 18px;
+    font-family: "Times New Roman", sans-serif;
+    text-align: justify;
+    margin-bottom: 20px;
+    color: #ffffff;
+    padding: 20px;
+    width: 50%;
+}
+
+.simulationContainer {
+    width: 50%;
+    background-color: rgba(89, 22, 88, 0.5);
+    border-radius: 5px;
+    border: 2px solid #330033;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.simulationContainer label {
+    font-weight: bold;
+}
+
+.simulationContainer input {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.simulationContainer .times {
+    display: flex;
+    flex-direction: column;
+}
+
+.simulationContainer .times .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.simulationContainer .times .time {
+    width: 30%;
+}
+
+.simulationContainer .times .time input {
+    width: 80%;
+}
+
+.processStack {
+    border: 2px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+}
+
+.processStack p {
+    margin: 5px 0;
+    color: #111111;
+}
+
+.table {
+    background-color: #FCB70B;
+    width: 5vw;
+}
+
+.simulationButton {
+    background-color: #ffffff;
+    color: #111;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.simulationButton:hover {
+    background-color: #C4C4C4;
+}
+
+.simulationFIFO {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.timeRemaining {
+    border: 2px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.finished {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 2vw;
+    margin-top: 7vh;
+    margin-bottom: 7vh;
+}
+
+.textInformation {
+    font-size: 1.1vw;
+    font-family: "Gill Sans MT", sans-serif;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: white;
+}
