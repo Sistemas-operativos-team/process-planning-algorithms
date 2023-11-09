@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import "./SJF.css";
+import NavBar from "../NavBar/Navbar.jsx";
+import Footer from "../Footer/Footer.jsx";
 
 export const ShortestJobFirst = () => {
   const [processes, setProcesses] = useState([
@@ -20,15 +23,13 @@ export const ShortestJobFirst = () => {
   );
 
   const handleBurstTimeChange = (processId, newBurstTime) => {
-    if (!isNaN(newBurstTime)) {
-      setProcesses((prevProcesses) =>
-        prevProcesses.map((process) =>
-          process.id === processId
-            ? { ...process, burstTime: newBurstTime }
-            : process
-        )
-      );
-    }
+    setProcesses((prevProcesses) =>
+      prevProcesses.map((process) =>
+        process.id === processId
+          ? { ...process, burstTime: newBurstTime }
+          : process
+      )
+    );
   };
 
   const startSimulation = () => {
@@ -38,18 +39,29 @@ export const ShortestJobFirst = () => {
   };
 
   const reloadPage = () => {
-    window.location.reload();
+    setProcesses([
+      { id: 1, name: "Proceso A", arrivalTime: 0, burstTime: 4 },
+      { id: 2, name: "Proceso B", arrivalTime: 0, burstTime: 2 },
+      { id: 3, name: "Proceso C", arrivalTime: 0, burstTime: 1 },
+      { id: 4, name: "Proceso D", arrivalTime: 0, burstTime: 3 },
+      { id: 5, name: "Proceso E", arrivalTime: 0, burstTime: 2 },
+      { id: 6, name: "Proceso F", arrivalTime: 0, burstTime: 20 },
+      { id: 7, name: "Proceso G", arrivalTime: 0, burstTime: 5 },
+    ]);
+    setIsSimulationRunning(false);
+    setCurrentTime(0);
+    setRunningProcess(null);
   };
 
   useEffect(() => {
     if (isSimulationRunning) {
       const runSJF = () => {
-        // Filtra los procesos que ya han llegado
         const arrivedProcesses = processes.filter(
           (process) => process.arrivalTime <= currentTime
         );
 
         if (arrivedProcesses.length === 0) {
+          setIsSimulationRunning(false);
           return;
         }
 
@@ -65,51 +77,58 @@ export const ShortestJobFirst = () => {
         setCurrentTime(currentTime + nextProcessToRun.burstTime);
       };
 
-      const simulationInterval = setInterval(runSJF, 1000);
+      const simulationInterval = setInterval(runSJF, 2000); // Ejecución cada 2 segundos
 
       return () => {
         clearInterval(simulationInterval);
-        setIsSimulationRunning(false);
       };
     }
   }, [currentTime, processes, isSimulationRunning]);
 
   return (
-    <div>
-      <h1>Simulación de Shortest Job First (SJF)</h1>
-      <div>
-        <h2>Tiempo total actual: {currentTime}</h2>
+    <>
+      <div className="sjf-page">
+        <NavBar />
+        <div className="all">
+          <div className="sectionTitle">
+            <h1>Simulación de Shortest Job First (SJF)</h1>
+          </div>
+          <div className="sectionDescription">
+            <h2>Descripción del algoritmo:</h2>
+            <p>{description}</p>
+          </div>
+          <div className="simulationContainer">
+            <h2>Tiempo total actual: {currentTime}</h2>
+            <h2>
+              Proceso actual: {runningProcess ? runningProcess.name : "Ninguno"}
+            </h2>
+            <button onClick={startSimulation}>Ejecutar simulación</button>
+            <button onClick={reloadPage}>Reiniciar simulación</button>
+            <h2>Procesos en espera:</h2>
+            <ul>
+              {processes.map((process) => (
+                <li key={process.id}>
+                  {process.name} Tiempo de ráfaga:
+                  <br />
+                  <input
+                    type="number"
+                    value={process.burstTime}
+                    onChange={(e) =>
+                      handleBurstTimeChange(
+                        process.id,
+                        parseInt(e.target.value, 10)
+                      )
+                    }
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <Footer />
       </div>
-      <div>
-        <h2>Descripción del algoritmo:</h2>
-        <p>{description}</p>
-      </div>
-      <div>
-        <h2>
-          Proceso actual: {runningProcess ? runningProcess.name : "Ninguno"}
-        </h2>
-        <button onClick={startSimulation}>Siguiente proceso</button>
-        <button onClick={reloadPage}>Reiniciar simulación</button>
-        <h2>Procesos en espera:</h2>
-        <ul>
-          {processes.map((process) => (
-            <li key={process.id}>
-              {process.name} Tiempo de ráfaga:
-              <br />
-              <input
-                type="number"
-                value={process.burstTime}
-                onChange={(e) =>
-                  handleBurstTimeChange(
-                    process.id,
-                    parseInt(e.target.value, 10)
-                  )
-                }
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    </>
   );
 };
+
+export default ShortestJobFirst;
