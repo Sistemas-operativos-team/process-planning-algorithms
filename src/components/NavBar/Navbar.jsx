@@ -8,6 +8,7 @@ function NavBar() {
                     <div className={styles.left}>
                         <a href="/fifo" className={styles.sectionLink}>FIFO</a>
                         <a href="/priority" className={styles.sectionLink}>Prioridad</a>
+
                     </div>
                     <div className={styles.logo}>
                         <a href="/home"><img src="/images/Logo.png" alt="" width="100" height="100" className={styles.logoImage} /></a>
