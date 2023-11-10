@@ -24,13 +24,14 @@ const RoundRobinFuncional = () => {
       for (let i = 0; i < procesosRestantes.length; i++) {
         const procesoActual = procesosRestantes[i];
         const tiempoCorte =
-          procesoActual.tiempo > quantum ? quantum : procesoActual.tiempo;
+            procesoActual.tiempo > quantum ? quantum : procesoActual.tiempo;
 
         orden.push({
           id: procesoActual.id,
           tiempoInicio: tiempoActual,
-          tiempoFinal: tiempoActual + tiempoCorte,
+          tiempoTotalEjecucion: tiempoActual + tiempoCorte, // Cambiado a tiempoTotalEjecucion
           tiempoRestante: procesoActual.tiempo,
+          finalizado: false,
         });
 
         tiempoActual += tiempoCorte;
@@ -39,6 +40,14 @@ const RoundRobinFuncional = () => {
         if (procesoActual.tiempo <= 0) {
           procesosRestantes.splice(i, 1);
           i--;
+
+          orden.push({
+            id: procesoActual.id,
+            tiempoInicio: tiempoActual,
+            tiempoTotalEjecucion: tiempoActual,
+            tiempoRestante: 0,
+            finalizado: true,
+          });
         }
       }
     }
@@ -53,7 +62,7 @@ const RoundRobinFuncional = () => {
 
   const cambiarTiempoProceso = (id, tiempo) => {
     const procesosActualizados = procesos.map((p) =>
-      p.id === id ? { ...p, tiempo: parseInt(tiempo) } : p
+        p.id === id ? { ...p, tiempo: parseInt(tiempo) } : p
     );
     setProcesos(procesosActualizados);
   };
@@ -68,69 +77,70 @@ const RoundRobinFuncional = () => {
       if (indiceProcesoActual < ordenEjecucion.length) {
         setIndiceProcesoActual(indiceProcesoActual + 1);
       }
-    }, 1000); // Cambiar el proceso cada segundo
+    }, 1000);
 
     return () => clearInterval(intervalo);
   }, [indiceProcesoActual, ordenEjecucion]);
 
   return (
-    <div className="sjf-page">
-      <Navbar />
-      <div className="sectionTitle">
-        <h2>Simulación Round Robin</h2>
-      </div>
-      <div className="sectionDescription">
-        <p>
-          El algoritmo Round Robin es un método de planificación de procesos en
-          sistemas operativos. Distribuye un tiempo fijo, llamado "quantum", a
-          cada proceso en una cola circular. El quantum define la duración
-          máxima que un proceso puede ejecutarse en cada ronda. Si el proceso no
-          se completa dentro del quantum, se mueve al final de la cola para la
-          próxima ronda.
-        </p>
-      </div>
-      <div className="simulationContainer">
-        <label htmlFor="quantum">Quantum:</label>
-        <br />
-        <input
-          type="number"
-          id="quantum"
-          value={quantum}
-          onChange={cambiarQuantum}
-        />
-        <br />
-        <button onClick={ejecutarRoundRobin}>Ejecutar Round Robin</button>
-        <button onClick={reiniciarSimulacion}>Reiniciar Simulación</button>
-        <h3>Procesos:</h3>
-        <ul>
-          {procesos.map((proceso) => (
-            <li key={proceso.id}>
-              Proceso {proceso.id} - Tiempo:
-              <input
-                type="number"
-                value={proceso.tiempo}
-                onChange={(e) =>
-                  cambiarTiempoProceso(proceso.id, e.target.value)
-                }
-              />
-            </li>
-          ))}
-        </ul>
-        <h3>Orden de Ejecución:</h3>
-        <ul>
-          {ordenEjecucion
-            .slice(0, indiceProcesoActual + 1)
-            .map((proceso, indice) => (
-              <li key={indice}>
-                Proceso {proceso.id} - Tiempo de inicio: {proceso.tiempoInicio},
-                Tiempo final: {proceso.tiempoFinal}, Tiempo restante:{" "}
-                {proceso.tiempoRestante}
-              </li>
+      <div className="sjf-page">
+        <Navbar />
+        <div className="sectionTitle">
+          <h2>Simulación Round Robin</h2>
+        </div>
+        <div className="sectionDescription">
+          <p>
+            El algoritmo Round Robin es un método de planificación de procesos en
+            sistemas operativos. Distribuye un tiempo fijo, llamado "quantum", a
+            cada proceso en una cola circular. El quantum define la duración
+            máxima que un proceso puede ejecutarse en cada ronda. Si el proceso no
+            se completa dentro del quantum, se mueve al final de la cola para la
+            próxima ronda.
+          </p>
+        </div>
+        <div className="simulationContainer">
+          <label htmlFor="quantum">Quantum:</label>
+          <br />
+          <input
+              type="number"
+              id="quantum"
+              value={quantum}
+              onChange={cambiarQuantum}
+          />
+          <br />
+          <button onClick={ejecutarRoundRobin}>Ejecutar Round Robin</button>
+          <button onClick={reiniciarSimulacion}>Reiniciar Simulación</button>
+          <h3>Procesos:</h3>
+          <ul>
+            {procesos.map((proceso) => (
+                <li key={proceso.id}>
+                  Proceso {proceso.id} - Tiempo:
+                  <input
+                      type="number"
+                      value={proceso.tiempo}
+                      onChange={(e) =>
+                          cambiarTiempoProceso(proceso.id, e.target.value)
+                      }
+                  />
+                </li>
             ))}
-        </ul>
+          </ul>
+          <h3>Orden de Ejecución:</h3>
+          <ul>
+            {ordenEjecucion
+                .slice(0, indiceProcesoActual + 1)
+                .map((proceso, indice) => (
+                    <li key={indice}>
+                      Proceso {proceso.id} - Tiempo de inicio: {proceso.tiempoInicio},
+                      Tiempo total de ejecución: {proceso.tiempoTotalEjecucion}, Tiempo restante:{" "}
+                      {proceso.tiempoRestante}
+                      {proceso.finalizado && " - Finalizado"}
+                    </li>
+                ))}
+          </ul>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
   );
 };
 
