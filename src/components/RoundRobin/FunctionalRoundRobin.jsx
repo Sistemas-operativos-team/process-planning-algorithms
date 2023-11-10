@@ -10,7 +10,6 @@ const RoundRobinFuncional = () => {
     { id: 3, tiempo: 0 },
     { id: 4, tiempo: 0 }, // Nuevo proceso
     { id: 5, tiempo: 0 }, // Nuevo proceso
-    // Puedes agregar más procesos si lo deseas
   ]);
   const [quantum, setQuantum] = useState(0);
   const [ordenEjecucion, setOrdenEjecucion] = useState([]);
