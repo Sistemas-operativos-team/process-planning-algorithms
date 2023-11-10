@@ -77,7 +77,7 @@ const RoundRobinFuncional = () => {
     <div className="sjf-page">
       <Navbar />
       <div className="sectionTitle">
-        <h2>Simulación Round Robin</h2>
+        <h2>Simulación de Round Robin</h2>
       </div>
       <div className="sectionDescription">
         <p>
