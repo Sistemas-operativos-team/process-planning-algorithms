@@ -11,11 +11,6 @@
     src: url('WendyOne.ttf') format('truetype');
 }
 
-@font-face{
-    font-family: 'Wendy One';
-    src: url('WendyOne.ttf') format('truetype');
-}
-
 .allSectionInfo {
     height: auto;
 }
@@ -23,7 +18,6 @@
 .content {
     text-align: center;
 }
-
 
 .planContent {
     display: flex;

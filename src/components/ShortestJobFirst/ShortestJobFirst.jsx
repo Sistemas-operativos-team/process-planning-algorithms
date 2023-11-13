@@ -63,7 +63,7 @@ export const ShortestJobFirst = () => {
       id: newProcessId,
       name: `Proceso ${String.fromCharCode(65 + newProcessId - 1)}`,
       arrivalTime: 0,
-      burstTime: 1, // You can set the default burst time for the new process
+      burstTime: 1,
     };
 
     setProcesses((prevProcesses) => [...prevProcesses, newProcess]);
@@ -109,7 +109,7 @@ export const ShortestJobFirst = () => {
         <NavBar />
         <div className="all">
           <div className="sectionTitle">
-            <h1>Simulación de Shortest Job First (SJF)</h1>
+            <center><h1>Simulación de Shortest Job First (SJF)</h1></center>
           </div>
           <div className="sectionDescription">
             <h2>Descripción del algoritmo:</h2>

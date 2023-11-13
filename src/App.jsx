@@ -13,7 +13,7 @@ function App() {
       <Route path="/sjf" element={<ShortestJobFirst />} />
       <Route path={"/home"} element={<Home />}></Route>
       <Route path={"/fifo"} element={<Fifo />}></Route>
-      <Route path={"/round-robin"} element={<FunctionalRoundRobin />}></Route>
+      <Route path={"/round-robin"} element={<FunctionalRoundRobin/>}></Route>
       <Route path={"/priority"} element={<Priority />}></Route>
     </Routes>
   );
