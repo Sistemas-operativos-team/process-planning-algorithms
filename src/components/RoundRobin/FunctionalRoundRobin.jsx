@@ -5,20 +5,20 @@ import Footer from "../Footer/Footer";
 
 const RoundRobinFuncional = () => {
   const [procesos, setProcesos] = useState([
-    { id: 1, tiempo: 0 },
-    { id: 2, tiempo: 0 },
-    { id: 3, tiempo: 0 },
-    { id: 4, tiempo: 0 }, // Nuevo proceso
-    { id: 5, tiempo: 0 }, // Nuevo proceso
+    { id: 1, tiempo: 5 },
+    { id: 2, tiempo: 7 },
+    { id: 3, tiempo: 3 },
+    { id: 4, tiempo: 2 }, // Nuevo proceso
+    { id: 5, tiempo: 4 }, // Nuevo proceso
   ]);
   const [quantum, setQuantum] = useState(0);
   const [ordenEjecucion, setOrdenEjecucion] = useState([]);
   const [indiceProcesoActual, setIndiceProcesoActual] = useState(0);
 
-  const ejecutarRoundRobin = () => {
+  const ejecutarRoundRobin = async () => {
     const procesosRestantes = procesos.map((p) => ({ ...p }));
     const orden = [];
-    let tiempoActual = 0;
+    let tiempoTotal = 0;
 
     while (procesosRestantes.length > 0) {
       for (let i = 0; i < procesosRestantes.length; i++) {
@@ -26,33 +26,30 @@ const RoundRobinFuncional = () => {
         const tiempoCorte =
             procesoActual.tiempo > quantum ? quantum : procesoActual.tiempo;
 
+        for (let t = 1; t <= tiempoCorte; t++) {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          tiempoTotal++;
+          setOrdenEjecucion([...orden, { id: procesoActual.id, tiempoRestante: procesoActual.tiempo - t, tiempoTotal: tiempoTotal }]);
+        }
+
         orden.push({
           id: procesoActual.id,
-          tiempoInicio: tiempoActual,
-          tiempoTotalEjecucion: tiempoActual + tiempoCorte, // Cambiado a tiempoTotalEjecucion
-          tiempoRestante: procesoActual.tiempo,
-          finalizado: false,
+          tiempoInicio: tiempoTotal - tiempoCorte,
+          tiempoTotalEjecucion: tiempoCorte,
+          tiempoRestante: procesoActual.tiempo - tiempoCorte,
+          finalizado: procesoActual.tiempo <= 0,
         });
 
-        tiempoActual += tiempoCorte;
         procesoActual.tiempo -= tiempoCorte;
 
         if (procesoActual.tiempo <= 0) {
           procesosRestantes.splice(i, 1);
           i--;
-
-          orden.push({
-            id: procesoActual.id,
-            tiempoInicio: tiempoActual,
-            tiempoTotalEjecucion: tiempoActual,
-            tiempoRestante: 0,
-            finalizado: true,
-          });
+          setOrdenEjecucion([...orden, { id: procesoActual.id, tiempoRestante: 0, tiempoTotal: tiempoTotal, finalizado: true }]);
         }
       }
     }
 
-    setOrdenEjecucion(orden);
     setIndiceProcesoActual(0);
   };
 
@@ -127,16 +124,14 @@ const RoundRobinFuncional = () => {
           </ul>
           <h3>Orden de Ejecución:</h3>
           <ul>
-            {ordenEjecucion
-                .slice(0, indiceProcesoActual + 1)
-                .map((proceso, indice) => (
-                    <li key={indice}>
-                      Proceso {proceso.id} - Tiempo de inicio: {proceso.tiempoInicio},
-                      Tiempo total de ejecución: {proceso.tiempoTotalEjecucion}, Tiempo restante:{" "}
-                      {proceso.tiempoRestante}
-                      {proceso.finalizado && " - Finalizado"}
-                    </li>
-                ))}
+            {ordenEjecucion.map((proceso, indice) => (
+                <li key={indice}>
+                  Proceso {proceso.id} - Inicio: {proceso.tiempoInicio}s,
+                  Duración: {proceso.tiempoTotalEjecucion}s, Restante:{" "}
+                  {proceso.tiempoRestante}s, Total: {proceso.tiempoTotal}s
+                  {proceso.finalizado && " - Finalizado"}
+                </li>
+            ))}
           </ul>
         </div>
         <Footer />
