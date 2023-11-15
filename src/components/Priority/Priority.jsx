@@ -14,8 +14,8 @@ const Priority = () => {
 
     const handleProcessCountChange = (e) => {
         const count = parseInt(e.target.value, 10);
-        if (count > 12) {
-            alert('La cantidad de procesos no puede ser mayor a 12');
+        if (count > 12 || count < 1) {
+            alert('Ingrese una cantidad de procesos válida entre 1 y 12');
         } else {
             setProcessCount(count);
         }
@@ -24,8 +24,8 @@ const Priority = () => {
     const handleExecutionTimeChange = (e, processIndex, field) => {
         const value = e.target.value.trim() === '' ? '' : Number(e.target.value);
 
-        if ((field === 'time' || field === 'priority') && (value !== '' && (isNaN(value) || value < 1 || value > 10))) {
-            alert('El tiempo o la prioridad deben ser números entre 1 y 10');
+        if ((field === 'time' || field === 'priority') && (value !== '' && (isNaN(value) || value < 1 || value > (field === 'time' ? 20 : 10)))) {
+            alert(`${field === 'time' ? 'El tiempo' : 'La prioridad'} debe ser un número entre 1 y ${field === 'time' ? 20 : 10}`);
             return;
         }
 
