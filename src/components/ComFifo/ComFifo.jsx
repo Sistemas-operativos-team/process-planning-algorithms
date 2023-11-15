@@ -14,8 +14,8 @@ function ComFifo() {
     // Manejar el cambio de la cantidad de procesos, acá validamos que no sea mayor a 12
     const handleProcessCountChange = (e) => {
         const count = parseInt(e.target.value, 10);
-        if (count > 12) {
-            alert('La cantidad de procesos no puede ser mayor a 12');
+        if (count > 12 || count < 1) {
+            alert('Ingresa una cantidad de procesos válida, entre 1 y 12');
         } else {
             setProcessCount(count);
         }
@@ -24,8 +24,8 @@ function ComFifo() {
     // Actualizar los cambios de tiempos de ejecución
     const handleExecutionTimeChange = (e, processIndex) => {
         const time = parseInt(e.target.value, 10);
-        if (time > 20) {
-            alert('El tiempo de ejecución no puede ser mayor a 20');
+        if (time > 20 || time < 1) {
+            alert('Ingresa un tiempo válido entre 1 y 20 segundos');
         } else {
             // Actualizar campos
             const updateExecutionTimes = [...executionTimes];
